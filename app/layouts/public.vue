@@ -3,13 +3,15 @@
 </script>
 
 <template>
-  <PublicNav/>
+  <div class="bg-slate-200 min-h-screen ">
+    <PublicNav/>
 
-  <main>
-    <slot/>
-  </main>
+    <main>
+      <slot/>
+    </main>
 
-  <PublicFooter/>
+    <PublicFooter/>
+  </div>
 </template>
 
 <style scoped>
