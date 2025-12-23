@@ -7,7 +7,7 @@
     <PublicNav/>
 
     <main>
-      <slot/>
+      <slot></slot>
     </main>
 
     <PublicFooter/>
