@@ -5,7 +5,7 @@
 </script>
 
 <template>
-  main
+  <PublicHero />
 </template>
 
 <style scoped>

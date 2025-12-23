@@ -1,8 +1,17 @@
 <script setup lang="ts">
+  const scrolled = ref(false)
+
+  const handleScroll = () => {
+    scrolled.value = window.scrollY >= window.innerHeight / 4;
+  };
+
+  onMounted(() => window.addEventListener('scroll', handleScroll));
+  onUnmounted(() => window.removeEventListener('scroll', handleScroll));
+
 </script>
 
 <template>
-  <nav class="nav-root">
+  <nav class="nav-root" :class="{'show': scrolled}">
     <div class="navbar">
       <div class="nav-group">
         <AppLogo />
@@ -20,6 +29,16 @@
         </div>
       </div>
 
+      <div class="nav-group max-w-72 w-full">
+        <div class="relative  w-full">
+          <input type="text" placeholder="Search Destination...">
+
+          <div class="absolute right-2 top-3  text-gray-400 ">
+            <Icon name="ion:search" size="24" />
+          </div>
+        </div>
+      </div>
+
       <div class="nav-group">
         <LocaleSelector />
         <ButtonComponent type="secondary">Login</ButtonComponent>
@@ -31,13 +50,18 @@
 
 <style scoped>
   @reference "tailwindcss";
+  @import "~/assets/css/forms.css";
 
   .nav-root {
-    @apply flex justify-center bg-white rounded-lg;
+    @apply flex justify-center text-white rounded-lg fixed z-30 my-1 w-[calc(100%-8px)] left-1 transition-all;
+  }
+
+  .nav-root.show {
+    @apply bg-white text-black;
   }
 
   .navbar {
-    @apply max-w-7xl flex justify-between w-full sm:px-6 sm:py-2 lg:px-8 lg:py-4
+    @apply flex justify-between w-full sm:px-3 sm:py-2 lg:px-6 lg:py-4 max-w-7xl;
   }
 
   .nav-group {
@@ -45,6 +69,6 @@
   }
 
   .nav-item {
-    @apply px-4 py-2 rounded-md transition-all cursor-pointer hover:bg-gray-200
+    @apply px-4 py-2 rounded-md transition-all cursor-pointer hover:bg-gray-200 hover:text-black;
   }
 </style>

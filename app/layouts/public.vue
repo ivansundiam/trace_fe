@@ -1,11 +1,11 @@
 <template>
-  <div class="bg-slate-200 min-h-screen p-1">
-    <PublicNav/>
+  <div class="bg-slate-200 min-h-screen">
+    <PublicNav />
 
-    <main>
+    <main class="min-h-screen">
       <slot></slot>
     </main>
 
-    <PublicFooter/>
+    <PublicFooter />
   </div>
 </template>

@@ -30,7 +30,7 @@
   }
 
   .secondary {
-    @apply bg-transparent hover:bg-primary-hover active:bg-primary-active;
+    @apply bg-transparent hover:bg-primary-hover active:bg-primary-active text-inherit hover:text-black;
   }
 
   .success {
@@ -52,4 +52,5 @@
   .md {
     @apply  px-4 py-2;
   }
+
 </style>

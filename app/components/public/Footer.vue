@@ -56,7 +56,7 @@
   @import "~/assets/css/forms.css";
 
   .footer-root {
-    @apply bg-primary-dark px-8 py-6 rounded-lg;
+    @apply bg-primary-dark px-8 py-6 rounded-lg m-1;
   }
 
   .footer-content {
