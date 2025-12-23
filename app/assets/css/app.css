@@ -1,38 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import "tailwindcss";
 
-body {
-    font-family: "Jost", sans-serif;
-    font-size: 1rem;
-}
-
-
 :root {
     --color-primary: #f5f5f5;
     --color-primary-hover: #EAEAEAFF;
     --color-primary-active: #DEDEDEFF;
 
-    --color-primary-dark: #444141;
-    --color-primary-hover-dark: #312c2c;
-    --color-primary-active-dark: #494848;
+    --color-primary-dark: #212121;
+    --color-primary-hover-dark: #434343;
+    --color-primary-active-dark: #1e1e1e;
 }
 
-/*@media (prefers-color-scheme: dark) {*/
-/*    :root {*/
-/*        --color-primary: var(--color-primary-dark);*/
-/*        --color-primary-hover: var(--color-primary-hover-dark);*/
-/*        --color-primary-active: var(--color-primary-active-dark);*/
-/*    }*/
-/*}*/
+/* @media (prefers-color-scheme: dark) {
+   :root {
+       --color-primary: var(--color-primary-dark);
+       --color-primary-hover: var(--color-primary-hover-dark);
+       --color-primary-active: var(--color-primary-active-dark);
+   }
+} */
 
 /* tailwind themes */
-@theme {
+@theme inline {
     --font-default: "Jost", sans-serif;
     --font-heading: "Montserrat Alternates", sans-serif;
 
     --color-primary: var(--color-primary);
     --color-primary-hover: var(--color-primary-hover);
     --color-primary-active: var(--color-primary-active);
+    --color-primary-dark: var(--color-primary-dark);
     --color-success: oklch(72.3% 0.219 149.579);
     --color-success-hover: oklch(79.2% 0.209 151.711);
     --color-success-active: oklch(62.7% 0.194 149.214);
@@ -48,5 +43,9 @@ body {
     --color-warning-active: oklch(68.1% 0.162 75.834);
     --color-warning-light: oklch(90.5% 0.182 98.111);
     --color-warning-dark: oklch(55.4% 0.135 66.442);
+}
 
+
+body {
+    @apply font-default text-base;
 }
