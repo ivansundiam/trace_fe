@@ -26,7 +26,7 @@
   @reference "~/assets/css/app.css";
 
   .btn-root {
-    @apply px-4 py-2 rounded-md bg-primary transition-all hover:bg-primary-hover active:bg-primary-active text-black cursor-pointer;
+    @apply rounded-md bg-primary transition-all hover:bg-primary-hover active:bg-primary-active text-black cursor-pointer;
   }
 
   .secondary {
@@ -43,5 +43,13 @@
 
   .warning {
     @apply bg-warning hover:bg-warning-hover active:bg-warning-active;
+  }
+
+  .sm {
+    @apply px-3 py-1;
+  }
+
+  .md {
+    @apply  px-4 py-2;
   }
 </style>

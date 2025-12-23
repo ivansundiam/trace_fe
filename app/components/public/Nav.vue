@@ -33,7 +33,7 @@
   @reference "tailwindcss";
 
   .nav-root {
-    @apply flex justify-center bg-white;
+    @apply flex justify-center bg-white rounded-lg;
   }
 
   .navbar {

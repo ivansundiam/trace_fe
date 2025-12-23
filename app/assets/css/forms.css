@@ -1,5 +1,3 @@
-@reference "./app.css";
-
 input[type=text],
 input[type=password],
 input[type=email],
@@ -9,9 +7,14 @@ input[type=time],
 input[type=search],
 textarea,
 select {
-    @apply p-2.5 text-base bg-gray-400/25 border border-gray-300 rounded-md w-full focus:outline-1 focus:outline-primary placeholder:text-sm disabled:bg-gray-400 disabled:opacity-70; 
+  @apply p-2.5 text-base bg-white border border-gray-300 rounded-md w-full focus:outline-1 focus:outline-primary placeholder:text-sm disabled:bg-gray-400 disabled:opacity-70;
+
 }
-  
+
+input.dark {
+  @apply bg-gray-400/25
+}
+
 input[type=checkbox],
 input[type=radio] {
   &:checked {
@@ -24,5 +27,5 @@ input[type=checkbox] {
 }
 
 [label-required]::after {
-    @apply content-['*'] text-danger text-lg leading-4 ml-1
+  @apply content-['*'] text-danger text-lg leading-4 ml-1
 }

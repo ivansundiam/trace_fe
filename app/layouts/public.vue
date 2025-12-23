@@ -1,9 +1,5 @@
-<script setup lang="ts">
-
-</script>
-
 <template>
-  <div class="bg-slate-200 min-h-screen ">
+  <div class="bg-slate-200 min-h-screen p-1">
     <PublicNav/>
 
     <main>
@@ -13,7 +9,3 @@
     <PublicFooter/>
   </div>
 </template>
-
-<style scoped>
-
-</style>
