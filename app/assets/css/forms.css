@@ -9,7 +9,7 @@ input[type=time],
 input[type=search],
 textarea,
 select {
-  @apply p-2.5 text-base bg-gray-100/25 border border-gray-300 rounded-md w-full focus:outline-1 focus:outline-primary placeholder:text-sm disabled:bg-gray-400 disabled:opacity-70;
+  @apply font-heading p-2.5 text-base bg-gray-100/25 border border-gray-300 rounded-md w-full focus:outline-1 focus:outline-primary placeholder:text-sm disabled:bg-gray-400 disabled:opacity-70;
 
 }
 
@@ -20,7 +20,7 @@ input.dark {
 input[type=checkbox],
 input[type=radio] {
   &:checked {
-    @apply accent-primary;
+    @apply accent-primary-dark;
   }
 }
 

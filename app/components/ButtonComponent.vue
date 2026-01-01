@@ -4,17 +4,19 @@
         text?: string;
         variant: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'dark';
         size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+        width?: string; // accepts tailwind widths
         radius?: 'sm' | 'md' | 'lg' | 'full'
       }>(), {
         variant: 'secondary',
         size: 'md',
         radius: "md",
+        width: 'auto'
       }
   )
 </script>
 
 <template>
-  <button :class="['btn', `btn-${variant}`, size, `rounded-${radius}`]">
+  <button :class="['btn', `btn-${variant} rounded-${radius} w-${width}`, size]">
     <span v-if="text">{{ text }}</span>
     <slot v-else ></slot>
   </button>

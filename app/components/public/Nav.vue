@@ -1,5 +1,7 @@
 <script setup lang="ts">
+  const route = useRoute();
   const scrolled = ref(false)
+  const staticNav = computed(() => route.meta.staticNav ?? false)
 
   const handleScroll = () => {
     scrolled.value = window.scrollY >= window.innerHeight / 4;
@@ -14,7 +16,7 @@
 </script>
 
 <template>
-  <nav class="nav-root" :class="{'show': scrolled}">
+  <nav class="nav-root" :class="{ 'show': scrolled || staticNav, 'fixed': !staticNav }">
     <div class="navbar">
       <div class="nav-group">
         <AppLogo />
@@ -44,7 +46,11 @@
 
       <div class="nav-group">
         <LocaleSelector />
-        <ButtonComponent variant="secondary">Login</ButtonComponent>
+        <ButtonComponent variant="secondary">
+          <NuxtLink to="/login">
+            Login
+          </NuxtLink>
+        </ButtonComponent>
         <ButtonComponent variant="primary">Sign Up</ButtonComponent>
       </div>
     </div>
@@ -56,7 +62,7 @@
   @import "~/assets/css/forms.css";
 
   .nav-root {
-    @apply flex justify-center text-white rounded-lg fixed z-30 my-1 w-[calc(100%-8px)] left-1 transition-all;
+    @apply flex justify-center text-white rounded-lg  z-30 my-1 w-[calc(100%-8px)] left-1 transition-all;
   }
 
   .nav-root.show {
