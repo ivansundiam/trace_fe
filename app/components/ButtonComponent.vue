@@ -2,20 +2,18 @@
   withDefaults(
       defineProps<{
         text?: string;
-        type: 'primary' | 'secondary' | 'success' | 'warning' | 'danger';
+        variant?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'dark';
         size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-        theme?: 'light' | 'dark'
         radius?: 'sm' | 'md' | 'lg' | 'full'
       }>(), {
         size: 'md',
-        theme: 'light',
         radius: "md"
       }
   )
 </script>
 
 <template>
-  <button :class="['btn-root', type, size, theme, `rounded-${radius}`]">
+  <button :class="['btn-root', variant, size, `rounded-${radius}`]">
     <span v-if="text">{{ text }}</span>
     <slot v-else ></slot>
   </button>
@@ -26,7 +24,13 @@
   @reference "~/assets/css/app.css";
 
   .btn-root {
-    @apply rounded-md bg-primary transition-all hover:bg-primary-hover active:bg-primary-active text-black cursor-pointer;
+    @apply rounded-md bg-primary transition-all hover:bg-primary-hover active:bg-primary-active cursor-pointer;
+  }
+
+
+  /* variants */
+  .primary {
+    @apply bg-primary hover:bg-primary-hover active:bg-primary-active text-black;
   }
 
   .secondary {
@@ -44,6 +48,12 @@
   .warning {
     @apply bg-warning hover:bg-warning-hover active:bg-warning-active;
   }
+  
+  .dark {
+    @apply bg-primary-dark hover:bg-primary-dark-hover active:bg-primary-dark-active text-white;
+  }
+
+  /* sizes */
 
   .sm {
     @apply px-3 py-1;
