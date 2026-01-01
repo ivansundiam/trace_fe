@@ -15,16 +15,20 @@
 </script>
 
 <template>
-  <div class="max-w-7xl mx-auto py-8">
-    <h1 class="title">Blog</h1>
-    <p>Here, we share travel tips, destination guides, and stories that inspire youre next adventure.</p>
+  <section class="max-w-7xl mx-auto py-8">
+    <header>
+      <h1 class="title">Blog</h1>
+      <p>Here, we share travel tips, destination guides, and stories that inspire youre next adventure.</p>
+  
+      <div class="my-3 flex justify-between">
+        <SegmentButtons :items="segmentButtons" v-model="selectedTab"  />
+  
+        <SortBy v-model="sort" />
+      </div>
+    </header>
 
-    <div class="my-3 flex justify-between">
-      <SegmentButtons :items="segmentButtons" v-model="selectedTab"  />
-
-      <SortBy v-model="sort" />
-    </div>
-  </div>
+    <BlogCard />
+  </section>
 </template>
 
 <style scoped>
