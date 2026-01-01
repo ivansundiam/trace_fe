@@ -6,8 +6,10 @@
 
 <template>
   <PublicHero />
+
+  <PublicBlogSection />
 </template>
 
 <style scoped>
-
+  
 </style>
