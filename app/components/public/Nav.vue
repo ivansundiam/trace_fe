@@ -5,7 +5,10 @@
     scrolled.value = window.scrollY >= window.innerHeight / 4;
   };
 
-  onMounted(() => window.addEventListener('scroll', handleScroll));
+  onMounted(() => {
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
+  });
   onUnmounted(() => window.removeEventListener('scroll', handleScroll));
 
 </script>
