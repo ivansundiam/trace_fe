@@ -17,19 +17,14 @@
             </div>
 
             <div>
-                <div class="flex items-center gap-3 text-white">
-                    <div class="size-10 rounded-full overflow-hidden bg-gray-500">
-                        <img src="~/assets/images/public/profile-pic.jpg" class="size-full object-cover" alt="profile-pic" />
-                    </div>
-                    <p class="text-lg">Theodore Reginald</p>
-                </div>
+                <UserAvatar is-dark />
 
                 <div class="flex gap-2 mt-3" > 
                     <span class="flex items-center gap-1">
                         <Icon name="ion:calendar-clear-outline" />
                         Dec 23, 2025
                     </span>
-                     | 
+                    <span class="text-sm">●</span>
                     <span class="flex items-center gap-1">
                         <Icon name="ion:time-outline" />
                         10 min read
