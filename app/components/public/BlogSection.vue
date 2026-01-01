@@ -10,6 +10,7 @@
   ];
 
   const selectedTab = ref<string>('all');
+  const sort = ref<string>('date_desc');
 
 </script>
 
@@ -20,6 +21,8 @@
 
     <div class="my-3 flex justify-between">
       <SegmentButtons :items="segmentButtons" v-model="selectedTab"  />
+
+      <SortBy v-model="sort" />
     </div>
   </div>
 </template>
