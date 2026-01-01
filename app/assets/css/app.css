@@ -11,6 +11,9 @@
     --color-primary-dark: #212121;
     --color-primary-hover-dark: #434343;
     --color-primary-active-dark: #1e1e1e;
+
+    --font-default: "Jost", sans-serif;
+    --font-brand: "Montserrat Alternates", sans-serif;
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -24,8 +27,8 @@
 /* tailwind themes */
 @theme inline {
     /* fonts */
-    --font-default: "Jost", sans-serif;
-    --font-heading: "Montserrat Alternates", sans-serif;    
+    --font-default: var(--font-default);
+    --font-brand: var(--font-brand);
 
     /* colors */
     --color-background: var(--color-background);
@@ -57,7 +60,39 @@
     --color-warning-dark: oklch(55.4% 0.135 66.442);
 }
 
+@layer base {
+    body {
+        @apply font-default text-base;
+    }
+}
 
-body {
-    @apply font-default text-base;
+@layer components {
+    .btn {
+        @apply rounded-md bg-primary transition-colors duration-150 hover:bg-primary-hover active:bg-primary-active cursor-pointer;
+    }
+
+    /* variants */
+    .btn-primary {
+        @apply bg-primary hover:bg-primary-hover active:bg-primary-active text-black;
+    }
+
+    .btn-secondary {
+        @apply bg-transparent hover:bg-primary-hover active:bg-primary-active text-inherit hover:text-black;
+    }
+
+    .btn-success {
+        @apply bg-success hover:bg-success-hover active:bg-success-active;
+    }
+
+    .btn-danger {
+        @apply bg-danger hover:bg-danger-hover active:bg-danger-active;
+    }
+
+    .btn-warning {
+        @apply bg-warning hover:bg-warning-hover active:bg-warning-active;
+    }
+
+    .btn-dark {
+        @apply bg-primary-dark hover:bg-primary-dark-hover active:bg-primary-dark-active text-white;
+    }
 }
