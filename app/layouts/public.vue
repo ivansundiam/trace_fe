@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-slate-200 min-h-screen">
+  <div class="bg-background min-h-screen">
     <PublicNav />
 
     <main class="min-h-screen">

@@ -41,8 +41,8 @@
 
       <div class="nav-group">
         <LocaleSelector />
-        <ButtonComponent type="secondary">Login</ButtonComponent>
-        <ButtonComponent type="primary">Sign Up</ButtonComponent>
+        <ButtonComponent variant="secondary">Login</ButtonComponent>
+        <ButtonComponent variant="primary">Sign Up</ButtonComponent>
       </div>
     </div>
   </nav>

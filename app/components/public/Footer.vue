@@ -25,7 +25,7 @@
             <input type="text" placeholder="Enter your email" class="dark pr-30!">
 
             <div class="absolute right-1.5 top-1/2 -translate-y-1/2">
-              <ButtonComponent type="primary" text="Subscribe" size="sm" />
+              <ButtonComponent variant="primary" text="Subscribe" size="sm" />
             </div>
           </div>
 
