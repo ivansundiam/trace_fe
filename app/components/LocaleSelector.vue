@@ -13,7 +13,7 @@
 </template>
 
 <style scoped>
-    @reference 'tailwindcss'
+    @reference 'tailwindcss';
     @reference '~/assets/css/app.css';
 
 </style>
