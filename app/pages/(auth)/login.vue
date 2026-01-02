@@ -1,15 +1,23 @@
 <script setup lang="ts">
+    import { useAuthStore } from '~/stores/auth/authStore';
+
     definePageMeta({
         layout: 'public',
         staticNav: true
-    })
+    });
 
+    const auth = useAuthStore();
+
+    const showPass = ref<boolean>(false);
     const form = reactive({
         email: '',
         password: '',
     });
 
-    const showPass = ref<boolean>(false);
+    const submit = async () => {
+        await auth.login(form.email, form.password);
+    }
+
 </script>
 
 <template>
@@ -20,7 +28,7 @@
                 <p class="subtitle">Sign in to Trace</p>
             </header>
 
-            <form class="space-y-5">
+            <form class="space-y-5" @submit.prevent="submit">
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input id="email" type="email" v-model="form.email" placeholder="johndoe@email.com" />
@@ -44,7 +52,7 @@
                     <a href="#" class="text-link">Forgot password?</a>
                 </div>
 
-                <ButtonComponent variant="dark" width="full">
+                <ButtonComponent submit variant="dark" width="full">
                     Log in
                 </ButtonComponent>
 

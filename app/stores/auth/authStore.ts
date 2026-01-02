@@ -1,7 +1,7 @@
 import type { User } from "~/shared/types/user";
 
 export const useAuthStore = defineStore('auth', () => {
-  const api = useApiFetch('auth');
+  const http = useHttp('auth');
 
   const currentUser = ref<User | null>(null);
 
@@ -9,20 +9,19 @@ export const useAuthStore = defineStore('auth', () => {
     currentUser.value = value
   }
 
-  async function csrf() {
-    await $fetch('/sanctum/csrf-cookie', {
-      baseURL: useRuntimeConfig().public.apiBase,
-      credentials: 'include'
-    })
-  }
-
-  async function login(email: string, password: string): Promise<User> {
-    await csrf()
-
-    return await api('login', {
-      method: 'POST',
-      body: { email, password },
-    });
+  async function login(email: string, password: string) {
+    try {
+      const user = await http<User>('login', {
+        method: 'POST',
+        body: { email, password },
+      });
+  
+      setUser(user);
+      navigateTo('/')
+    } catch (error) {
+      console.log(error);
+    
+    }
   }
 
   return {
