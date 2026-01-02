@@ -10,7 +10,7 @@ export default defineNuxtConfig({
       tailwindcss(),
     ],
   },
-  modules: ['@nuxt/icon', '@pinia/nuxt'],
+  modules: ['@nuxt/icon', '@nuxt/ui', '@pinia/nuxt'],
   runtimeConfig: {
     public: {
       apiBase: '/api',
