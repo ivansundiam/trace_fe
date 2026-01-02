@@ -6,17 +6,20 @@
         size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
         width?: string; // accepts tailwind widths
         radius?: 'sm' | 'md' | 'lg' | 'full'
+        submit?: boolean
       }>(), {
         variant: 'secondary',
         size: 'md',
         radius: "md",
-        width: 'auto'
+        width: 'auto',
+        submit: false
       }
   )
 </script>
 
 <template>
-  <button :class="['btn', `btn-${variant} rounded-${radius} w-${width}`, size]">
+  <button :type="submit ? 'submit' : 'button'" 
+    :class="['btn', `btn-${variant} rounded-${radius} w-${width}`, size]">
     <span v-if="text">{{ text }}</span>
     <slot v-else ></slot>
   </button>
