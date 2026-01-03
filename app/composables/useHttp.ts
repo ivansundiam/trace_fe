@@ -1,25 +1,27 @@
 import type { NitroFetchOptions } from 'nitropack'
 
-let csrfReady = false;
-
 export const useHttp = (group?: string) => {
     const baseURL = useBaseUrl(group);
-
-    return <T = unknown>(url: string, options?: NitroFetchOptions<any>): Promise<T> =>
-        $fetch<T>(url, {
+    const csrfReady = useState<boolean>('csrf-ready', () => false)
+    
+    return <T = unknown>(url: string, options?: NitroFetchOptions<any>): Promise<T> => {
+        const clientHeaders = useRequestHeaders(['cookie', 'referer']);
+        const methodsWithCsrf = ['POST', 'PUT', 'PATCH', 'DELETE'];
+        const fetchOptions: NitroFetchOptions<any> = {
             ...options,
             baseURL,
             credentials: 'include',
+            headers: { 
+                ...clientHeaders,
+                ...options?.headers
+            },
             async onRequest({ options }) {
-                const method = options.method ?? 'GET';
-                if (!['POST', 'PUT', 'PATCH', 'DELETE'].includes(method)) return;
-            
-                if (!csrfReady) { // only fetch CSRF once per sesison
+                if (methodsWithCsrf.includes(options.method!) && !csrfReady.value && import.meta.client) { // only fetch CSRF only on client and once per sesison
                     await $fetch('/sanctum/csrf-cookie', {
                         baseURL: useRuntimeConfig().public.apiBase,
                         credentials: 'include'
                     });
-                    csrfReady = true;
+                    csrfReady.value = true;
                 }
 
                 const token = useCookie('XSRF-TOKEN').value;
@@ -29,5 +31,8 @@ export const useHttp = (group?: string) => {
                 headers.set('X-XSRF-TOKEN', decodeURIComponent(token));
                 options.headers = headers;
             }
-        })
+        }
+
+        return $fetch<T>(url, fetchOptions);
+    }
 }
