@@ -2,6 +2,7 @@ import type { User } from "~/shared/types/user";
 
 export const useAuthStore = defineStore('auth', () => {
   const http = useHttp('auth');
+  const baseURL = useBaseUrl();
   const currentUser = ref<User | null>(null);
   const loading = ref<boolean>(false);
   const resolved = ref<boolean>(false);
@@ -17,19 +18,19 @@ export const useAuthStore = defineStore('auth', () => {
     currentUser.value = null;
   }
 
-  async function loadUser(): Promise<User | null> {
+  async function loadUser() {
     try {
-      const user = await http<User>('user');
+      const user = await http<User>('user', {
+        baseURL,
+        credentials: 'include'
+      });
       setUser(user);
-      return user;
-    } catch (err: any) {
-      resetUser();
-      error.value = err;
-      console.log(error.value);
-      
-      return null;
+    } catch (err) {
+      resetUser()
+      error.value = err
+      return null
     } finally {
-      resolved.value = true;
+      resolved.value = true
     }
   }
 
