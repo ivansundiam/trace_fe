@@ -1,7 +1,12 @@
 <script setup lang="ts">
+  import { useAuthStore } from '~/stores/auth/useAuthStore';
+  import UserAvatar from '../UserAvatar.vue';
+
   const route = useRoute();
   const scrolled = ref(false)
   const staticNav = computed(() => route.meta.staticNav ?? false)
+
+  const auth = useAuthStore();
 
   const handleScroll = () => {
     scrolled.value = window.scrollY >= window.innerHeight / 4;
@@ -46,12 +51,27 @@
 
       <div class="nav-group">
         <LocaleSelector />
-        <ButtonComponent variant="secondary">
-          <NuxtLink to="/login">
-            Login
-          </NuxtLink>
-        </ButtonComponent>
-        <ButtonComponent variant="primary">Sign Up</ButtonComponent>
+
+        <template v-if="!auth.resolved">
+          loading
+        </template>
+
+        <template v-else-if="!auth.isLoggedIn">
+          <ButtonComponent variant="secondary">
+            <NuxtLink to="/login">
+              Login
+            </NuxtLink>
+          </ButtonComponent>
+          <ButtonComponent variant="primary">
+            <NuxtLink to="/">
+              Sign Up
+            </NuxtLink>
+          </ButtonComponent>
+        </template>
+
+        <template v-else>
+          <UserAvatar :is-dark="!scrolled" />
+        </template>
       </div>
     </div>
   </nav>
@@ -62,7 +82,7 @@
   @import "~/assets/css/forms.css";
 
   .nav-root {
-    @apply flex justify-center text-white rounded-lg  z-30 my-1 w-[calc(100%-8px)] left-1 transition-all;
+    @apply flex justify-center text-white rounded-lg z-30 my-1 w-[calc(100%-8px)] left-1 transition-all;
   }
 
   .nav-root.show {

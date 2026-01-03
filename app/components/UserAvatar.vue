@@ -16,9 +16,3 @@
         <p class="text-lg">Theodore Reginald</p>
     </div>
 </template>
-
-<style scoped>
-    @reference 'tailwindcss';
-    @reference '~/assets/css/app.css';
-
-</style>
