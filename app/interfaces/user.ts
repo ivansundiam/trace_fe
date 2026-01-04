@@ -1,5 +1,3 @@
-import type { Role } from "./role";
-
 export interface User {
     uuid: string;
     email: string;

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-  import { useAuthStore } from '~/stores/auth/useAuthStore';
   import UserAvatar from '../UserAvatar.vue';
 
   const route = useRoute();

@@ -1,5 +1,3 @@
-import type { User } from "~/shared/types/user";
-
 export const useAuthStore = defineStore('auth', () => {
   const http = useHttp('auth');
   const baseURL = useBaseUrl('auth');

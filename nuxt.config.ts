@@ -10,7 +10,18 @@ export default defineNuxtConfig({
       tailwindcss(),
     ],
   },
-  modules: ['@nuxt/icon', '@nuxt/ui', '@pinia/nuxt'],
+  modules: [
+    '@nuxt/icon', 
+    '@nuxt/ui', 
+    '@pinia/nuxt'
+  ],
+  imports: {
+    dirs: [
+      '~/composables/**',
+      '~/stores/**',
+      '~/interfaces/**',
+    ]
+  },
   runtimeConfig: {
     public: {
       apiBase: import.meta.env.NUXT_PUBLIC_API_BASE || '/api',
