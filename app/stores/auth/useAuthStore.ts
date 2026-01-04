@@ -10,12 +10,8 @@ export const useAuthStore = defineStore('auth', () => {
 
   const isLoggedIn = computed<boolean>(() => !!currentUser.value)
 
-  function setUser(value: User) {
+  function setUser(value: User | null) {
     currentUser.value = value
-  }
-
-  function resetUser() {
-    currentUser.value = null;
   }
 
   function setError(err: any) {
@@ -31,7 +27,7 @@ export const useAuthStore = defineStore('auth', () => {
       });
       setUser(user);
     } catch (err: any) {
-      resetUser();
+      setUser(null);
       setError(err);
       return null;
     } finally {
@@ -40,8 +36,10 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   async function login(email: string, password: string) {
+    error.value = null;
+    loading.value = true;
+    
     try {
-      loading.value = true
       const user = await http<User>('login', {
         method: 'POST',
         body: { email, password },
@@ -57,10 +55,11 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   async function logout() {
+    loading.value = true;
+
     try {
-      loading.value = true
       await http('logout', { method: 'POST' });
-      resetUser();
+      setUser(null);
       navigateTo('/login');
     } finally {
       loading.value = false
@@ -70,6 +69,7 @@ export const useAuthStore = defineStore('auth', () => {
   return {
     currentUser,
     isLoggedIn,
+    error,
     loading,
     resolved,
     setUser,

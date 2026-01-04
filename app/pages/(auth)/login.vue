@@ -41,8 +41,10 @@
                     <div class="eye-toggle">
                         <PasswordToggle v-model="showPass" />
                     </div>
-                </div>
 
+                    <span v-if="auth.error" class="text-danger">{{ auth.error.message }}</span>
+                </div>
+            
                 <div class="form-meta">
                     <label class="remember">
                         <input type="checkbox" />
@@ -101,7 +103,7 @@
     }
 
     .eye-toggle {
-        @apply absolute right-3 top-1/2 opacity-60;
+        @apply absolute right-3 top-[2.2rem] opacity-60;
     }
 
     .divider {
