@@ -18,6 +18,10 @@ export const useAuthStore = defineStore('auth', () => {
     currentUser.value = null;
   }
 
+  function setError(err: any) {
+    error.value = err.data;
+  }
+
   async function loadUser() {
     try {
       const user = await $fetch<User>('user', {
@@ -26,11 +30,9 @@ export const useAuthStore = defineStore('auth', () => {
         headers: getServerHeaders()
       });
       setUser(user);
-    } catch (err) {
+    } catch (err: any) {
       resetUser();
-      error.value = err;
-      console.log({ ERROR_HERE: err });
-
+      setError(err);
       return null;
     } finally {
       resolved.value = true;
@@ -47,8 +49,8 @@ export const useAuthStore = defineStore('auth', () => {
 
       setUser(user);
       navigateTo('/')
-    } catch (err: any) {
-      error.value = err.error.message;
+    } catch (err: any) {      
+      setError(err);
     } finally {
       loading.value = false
     }

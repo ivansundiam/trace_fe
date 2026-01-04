@@ -52,7 +52,7 @@
                     <a href="#" class="text-link">Forgot password?</a>
                 </div>
 
-                <ButtonComponent submit variant="dark" width="full">
+                <ButtonComponent submit variant="dark" width="full" :loading="auth.loading">
                     Log in
                 </ButtonComponent>
 
