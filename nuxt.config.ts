@@ -13,7 +13,8 @@ export default defineNuxtConfig({
   modules: ['@nuxt/icon', '@nuxt/ui', '@pinia/nuxt'],
   runtimeConfig: {
     public: {
-      apiBase: '/api',
+      apiBase: import.meta.env.NUXT_PUBLIC_API_BASE || '/api',
+      frontendBaseUrl: import.meta.env.NUXT_APP_URL || '/',
     }
   },
 })
