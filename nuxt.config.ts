@@ -11,8 +11,8 @@ export default defineNuxtConfig({
     ],
   },
   modules: [
-    '@nuxt/icon', 
-    '@nuxt/ui', 
+    '@nuxt/icon',
+    '@nuxt/ui',
     '@pinia/nuxt'
   ],
   imports: {
@@ -20,7 +20,11 @@ export default defineNuxtConfig({
       '~/composables/**',
       '~/stores/**',
       '~/interfaces/**',
+      '~/schemas/**',
     ]
+  },
+  ui: {
+    colorMode: false,
   },
   runtimeConfig: {
     public: {
