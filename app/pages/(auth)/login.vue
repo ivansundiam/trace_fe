@@ -45,9 +45,11 @@
                     <UInput type="email" v-model="formState.email" placeholder="johndoe@email.com" />
                 </UFormField>
 
-                <UFormField class="form-group" label="Password">
-                    <UInput :type="showPass ? 'text' : 'password'" v-model="formState.password"
-                        placeholder="Enter your password" :ui="{ trailing: 'pe-3' }">
+                <UFormField class="form-group" label="Password" name="password">
+                    <UInput :type="showPass ? 'text' : 'password'" 
+                        v-model="formState.password"
+                        placeholder="Enter your password" 
+                        :ui="{ trailing: 'pe-3' }">
                         <template #trailing>
                             <PasswordToggle v-model="showPass" :size="22" />
                         </template>
