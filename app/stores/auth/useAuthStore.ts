@@ -27,6 +27,8 @@ export const useAuthStore = defineStore('auth', () => {
     } catch (err: any) {
       setUser(null);
       setError(err);
+      console.log({ERROR_HERE: err});
+      
       return null;
     } finally {
       resolved.value = true;
@@ -47,6 +49,8 @@ export const useAuthStore = defineStore('auth', () => {
       navigateTo('/')
     } catch (err: any) {      
       setError(err);
+            console.log({ERROR_HERE: err});
+
     } finally {
       loading.value = false
     }

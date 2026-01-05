@@ -7,7 +7,8 @@
         width?: string; // accepts tailwind widths
         radius?: 'sm' | 'md' | 'lg' | 'full'
         submit?: boolean,
-        loading?: boolean
+        loading?: boolean,
+        disabled?: boolean
       }>(), {
         variant: 'secondary',
         size: 'md',
@@ -15,13 +16,14 @@
         width: 'auto',
         submit: false,
         loading: false,
+        disabled: false,
       }
   )
 </script>
 
 <template>
   <button :type="submit ? 'submit' : 'button'" 
-    :disabled="loading"
+    :disabled="loading || disabled"
     :class="['btn', `btn-${variant} rounded-${radius} w-${width}`, size]">
     <Icon v-if="loading" name="ion:load-c" :size="24" class="animate-spin" />
     <span v-else-if="text">{{ text }}</span>

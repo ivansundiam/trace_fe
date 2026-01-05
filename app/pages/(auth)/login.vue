@@ -1,4 +1,7 @@
 <script setup lang="ts">
+    import type { FormError, FormSubmitEvent } from '@nuxt/ui';
+    import type { LoginForm } from '~/schemas/auth/login.schema';
+
     definePageMeta({
         layout: 'public',
         staticNav: true
@@ -7,13 +10,24 @@
     const auth = useAuthStore();
 
     const showPass = ref<boolean>(false);
-    const form = reactive({
+    const formState = reactive<LoginForm>({
         email: '',
         password: '',
     });
 
+    function validate(state: Partial<LoginForm>): FormError[] {
+        const result = loginSchema.safeParse(state);
+
+        if (result.success) return [];
+
+        return result.error.issues.map(err => ({
+            name: err.path[0] as string, 
+            message: err.message
+        }));
+    }
+
     const submit = async () => {
-        await auth.login(form.email, form.password);
+        await auth.login(formState.email, formState.password);
     }
 
 </script>
@@ -26,23 +40,22 @@
                 <p class="subtitle">Sign in to Trace</p>
             </header>
 
-            <form class="space-y-5" @submit.prevent="submit">
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input id="email" type="email" v-model="form.email" placeholder="johndoe@email.com" />
-                </div>
+            <UForm class="space-y-5" :state="formState" :validate @submit.prevent="submit">
+                <UFormField class="form-group" label="Email" name="email">
+                    <UInput type="email" v-model="formState.email" placeholder="johndoe@email.com" />
+                </UFormField>
 
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input id="password" :type="showPass ? 'text' : 'password'" v-model="form.password"
-                        placeholder="Enter your password" />
-                    <div class="eye-toggle">
-                        <PasswordToggle v-model="showPass" />
-                    </div>
+                <UFormField class="form-group" label="Password">
+                    <UInput :type="showPass ? 'text' : 'password'" v-model="formState.password"
+                        placeholder="Enter your password" :ui="{ trailing: 'pe-3' }">
+                        <template #trailing>
+                            <PasswordToggle v-model="showPass" :size="22" />
+                        </template>
+                    </UInput>
 
                     <span v-if="auth.error" class="text-danger">{{ auth.error.message }}</span>
-                </div>
-            
+                </UFormField>
+
                 <div class="form-meta">
                     <label class="remember">
                         <input type="checkbox" />
@@ -69,7 +82,7 @@
                     New to Trace?
                     <a href="#" class="text-link">Create an account</a>
                 </p>
-            </form>
+            </UForm>
         </section>
     </div>
 </template>
